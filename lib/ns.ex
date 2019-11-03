@@ -27,37 +27,15 @@ defmodule NS do
 
   """
   def get(domain) do
-    cmd =
-      [
-        "dig",
-        " ",
-        "+noall",
-        " ",
-        "+answer",
-        " ",
-        "ns",
-        " ",
-        domain,
-        " ",
-        "|",
-        " ",
-        "rev",
-        " ",
-        "|",
-        " ",
-        "cut",
-        " ",
-        "-f",
-        " ",
-        "1",
-        " ",
-        "|",
-        " ",
-        "rev"
-      ]
-      |> IO.iodata_to_binary()
+    args = [
+      "+noall",
+      "+answer",
+      "+short",
+      "ns",
+      domain
+    ]
 
-    case System.cmd("sh", ["-c", cmd]) do
+    case System.cmd("dig", args) do
       {output, 0} -> {:ok, format_output(output)}
       {msg, error_num} -> {:error, msg, error_num}
     end
