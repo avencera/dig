@@ -22,12 +22,14 @@ defmodule NS do
 
   ## Examples
 
-      iex> NS.get("google.com")
-      {:ok, ["ns2.google.com", "ns4.google.com", "ns1.google.com", "ns3.google.com"]}
+      iex> {:ok, nameservers} = NS.get("google.com")
+      iex> sorted = Enum.sort(nameservers)
+      ["ns1.google.com", "ns2.google.com", "ns3.google.com", "ns4.google.com"]
 
   """
   def get(domain) do
     args = [
+      "@1.1.1.1",
       "+noall",
       "+answer",
       "+short",

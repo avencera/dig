@@ -3,7 +3,9 @@ defmodule NSTest do
   doctest NS
 
   test "gets nameservers for google.com" do
-    assert NS.get("google.com") ==
-             {:ok, ["ns2.google.com", "ns4.google.com", "ns1.google.com", "ns3.google.com"]}
+    {:ok, nameservers} = NS.get("google.com")
+
+    assert Enum.sort(nameservers) ==
+             ["ns1.google.com", "ns2.google.com", "ns3.google.com", "ns4.google.com"]
   end
 end
