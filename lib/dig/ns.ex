@@ -1,4 +1,4 @@
-defmodule NS do
+defmodule Dig.NS do
   @moduledoc """
   Wrapper around dig to get nameservers of a passed in domain
   """
@@ -23,7 +23,7 @@ defmodule NS do
   ## Examples
 
       iex> {:ok, nameservers} = NS.get("google.com")
-      iex> sorted = Enum.sort(nameservers)
+      iex> Enum.sort(nameservers)
       ["ns1.google.com", "ns2.google.com", "ns3.google.com", "ns4.google.com"]
 
   """

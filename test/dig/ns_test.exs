@@ -1,6 +1,7 @@
-defmodule NSTest do
+defmodule Dig.NSTest do
   use ExUnit.Case
-  doctest NS
+  alias Dig.NS
+  doctest Dig.NS
 
   test "gets nameservers for google.com" do
     {:ok, nameservers} = NS.get("google.com")
